@@ -1,3 +1,5 @@
+import plugin from 'tailwindcss/plugin'
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
@@ -7,6 +9,9 @@ export default {
   },
   theme: {
     extend: {
+      screens: {
+        base: '900px'
+      },
       colors: {
         red: 'hsl(354, 84%, 57%)',
         magnolia: 'hsl(217, 100%, 97%)',
@@ -24,6 +29,12 @@ export default {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(({ addVariant }) => {
+      addVariant('is-plan', '&.is-active'),
+      addVariant('is-checked', '&:has(input:checked)'),
+      addVariant('invalfo', '&:invalid:focus')
+    })
+  ],
 }
 

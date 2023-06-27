@@ -7,4 +7,14 @@
   html {
     font-family: 'Ubuntu', sans-serif;
   }
+
+  .inputs:has(input:checked) {
+    background: red;
+  }
+}
+
+@layer utilities {
+  .card-plans {
+    @apply p-4 flex border border-gray-100 rounded-md;
+  }
 }
