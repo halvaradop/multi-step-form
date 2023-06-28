@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect, MouseEvent } from "react"
-import { CardSelectPlan } from "../components/CardSelectPlan";
+import { PlanOptionCard } from "../components/PlanOptionCard";
 import { selectPlans } from "../utils/data";
-import { SelectedPlanProps } from "../interfaces/types";
+import { PlanSelectionPageProps } from "../interfaces/props";
 
-const SelectedPlan = ({ isNext, setIsNext, onUpdateTypePlan }: SelectedPlanProps ) => {
+const PlanSelectionPage = ({ isNext, setIsNext, onUpdatePlan }: PlanSelectionPageProps ) => {
     const planRef = useRef <HTMLElement | null> (null)
     const [isMonthly, setIsMonthly] = useState(true)
 
@@ -11,16 +11,15 @@ const SelectedPlan = ({ isNext, setIsNext, onUpdateTypePlan }: SelectedPlanProps
         if(isNext !== "Incomplete") {
             if(planRef.current) {
                 const { price, title } = planRef.current.dataset
-                console.log(price, title)
                 setIsNext("Successful")
-                onUpdateTypePlan({ title: title ?? "", price: price ?? "" })
+                onUpdatePlan({ title: title ?? "", price: price ?? "" })
             }
         }
     }, [isNext])
 
 
     const handleChangePlan = (event: MouseEvent <HTMLElement> ) => {
-        const target = event.currentTarget as HTMLElement
+        const target = event.currentTarget
         if(planRef.current) 
             planRef.current.classList.remove("is-active")
         if(planRef.current !== target) {
@@ -32,7 +31,7 @@ const SelectedPlan = ({ isNext, setIsNext, onUpdateTypePlan }: SelectedPlanProps
     }
 
     const handleClickTypePlan = (event: MouseEvent <HTMLSpanElement>) => {
-        const target = event.currentTarget as HTMLElement
+        const target = event.currentTarget
         if(target.classList.contains("justify-start")) {
             target.classList.replace("justify-start", "justify-end")
         }else {
@@ -48,9 +47,9 @@ const SelectedPlan = ({ isNext, setIsNext, onUpdateTypePlan }: SelectedPlanProps
             <section className="flex flex-col gap-y-5 base:grid base:grid-cols-3 base:gap-x-5">
                 {selectPlans.length > 0? (
                     selectPlans.map(({ img, title, priceMonth, priceYear }, key) => (
-                        <CardSelectPlan className="base:p-4 base:flex-col base:gap-y-7 base:leading-relaxed" key={key} img={img} title={title} price={isMonthly? priceMonth ?? "" : priceYear ?? "" } onClick={handleChangePlan}>
+                        <PlanOptionCard className="base:p-4 base:flex-col base:gap-y-7 base:leading-relaxed" key={key} img={img} title={title} price={isMonthly? priceMonth ?? "" : priceYear ?? "" } onClick={handleChangePlan}>
                             {!isMonthly && <span className="block text-blue text-sm font-medium base:mt-2 base:font-bold">2 months free</span>}
-                        </CardSelectPlan>
+                        </PlanOptionCard>
                     ))
                 ) : ""}
             </section>
@@ -65,4 +64,4 @@ const SelectedPlan = ({ isNext, setIsNext, onUpdateTypePlan }: SelectedPlanProps
     )
 }
 
-export { SelectedPlan }
+export { PlanSelectionPage }

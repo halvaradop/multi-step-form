@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { Button } from "../components/Button"
 
-const Error404 = () => {
+const NotFoundErrorPage = () => {
     const navigate = useNavigate()
 
     const handleVolver = () => {
@@ -19,4 +19,4 @@ const Error404 = () => {
     )
 }
 
-export { Error404 } 
+export { NotFoundErrorPage } 

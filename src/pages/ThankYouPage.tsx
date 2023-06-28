@@ -1,6 +1,6 @@
 import thank from "../assets/thank-you.svg"
 
-const Thanks = () => {
+const ThankYouPage = () => {
     return (
         <>
             <img className="mx-auto" src={thank} alt="icon check" />
@@ -14,4 +14,4 @@ const Thanks = () => {
     )
 }
 
-export { Thanks }
+export { ThankYouPage }

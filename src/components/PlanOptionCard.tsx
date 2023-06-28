@@ -1,6 +1,6 @@
-import { CardSelectPlanProps } from "../interfaces/types"
+import { PlanOptionCardProps } from "../interfaces/props"
 
-const CardSelectPlan = ({ className = "", img, title, price, children, onClick }: CardSelectPlanProps) => {
+const PlanOptionCard = ({ className, img, title, price, children, onClick }: PlanOptionCardProps) => {
     return (
         <article className={`card-plans items-start justify-start gap-x-5 is-plan:border-blue-100 is-plan:bg-magnolia hover:cursor-pointer sm:p-5 ${className}`} data-price={price} data-title={title} onClick={onClick}>
             <img src={img} alt="icon of a plan" />
@@ -13,4 +13,9 @@ const CardSelectPlan = ({ className = "", img, title, price, children, onClick }
     )
 }
 
-export { CardSelectPlan }
+PlanOptionCard.defaultProps = {
+    className: "",
+    onClick: () => {}
+}
+
+export { PlanOptionCard }

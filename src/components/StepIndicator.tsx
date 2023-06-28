@@ -1,6 +1,6 @@
-import { IndexSectionProps } from "../interfaces/types"
+import { StepIndicatorProps } from "../interfaces/props"
 
-const IndexSection = ({ index, title }: IndexSectionProps) => {
+const StepIndicator = ({ index, title }: StepIndicatorProps) => {
     return (
         <div className="base:flex base:items-center base:gap-x-5">
             <span className="w-8 h-8 text-white font-bold grid place-content-center border border-white rounded-full">{index}</span>
@@ -12,4 +12,4 @@ const IndexSection = ({ index, title }: IndexSectionProps) => {
     )
 }
 
-export { IndexSection }
+export { StepIndicator }

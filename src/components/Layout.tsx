@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react"
 import { Outlet, useLocation, useNavigate } from "react-router-dom"
 import { Button } from "./Button"
-import { IndexSection } from "./IndexSection"
-import { LayoutProps } from "../interfaces/types"
+import { StepIndicator } from "./StepIndicator"
+import { LayoutProps } from "../interfaces/props"
 import bgMobile from "../assets/sidebar-mobile.svg"
 import bgDesktop from "../assets/sidebar-desktop.svg"
 import { indexes } from "../utils/data"
@@ -40,11 +40,7 @@ const Layout = ({ isNextSection, setIsNextSection, setIsNext }: LayoutProps ) =>
     }
 
     const handleNagivationNext = () => {
-        if(isNextSection) {
-            handleNavigateSection(+1)    
-        }else {
-            setIsNext(value => value === "Pending" ? "Pending..." : "Pending")
-        }
+        setIsNext(value => value === "Pending" ? "Pending..." : "Pending")    
     }
 
     return (
@@ -54,7 +50,7 @@ const Layout = ({ isNextSection, setIsNextSection, setIsNext }: LayoutProps ) =>
                     <source media="(min-width: 900px)" srcSet={bgDesktop} />
                     <img className="w-full object-cover base:h-full base:max-h-[550px] base:rounded-xl" src={bgMobile} alt="background pattern" />
                     <div className="flex items-center justify-center gap-x-3 absolute top-8 inset-x-0 bg-transparent sm:top-10 md:top-14 base:w-10/12 base:mx-auto base:items-start base:flex-col base:gap-y-5 base:top-10" ref={indexContainerRef}>
-                        {indexes.map(({ index, title }) => <IndexSection key={index} index={index} title={title} />)}
+                        {indexes.map(({ index, title }) => <StepIndicator key={index} index={index} title={title} />)}
                     </div>
                 </picture>
                 <div className="w-full flex-1 relative bg-magnolia base:bg-transparent">          

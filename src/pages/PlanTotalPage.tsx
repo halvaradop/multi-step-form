@@ -1,11 +1,11 @@
 import { useEffect } from "react"
-import { FinishPageProps } from "../interfaces/types"
+import { PlanTotalPage } from "../interfaces/props"
 
 const parseCharacters = (str: string): number => {
     return parseInt(str.replace(/\D/g, ""))
 }
 
-const Finishing = ({ plan, isNext, setIsNext }: FinishPageProps) => {
+const PlanTotalPage = ({ plan, isNext, setIsNext }: PlanTotalPage) => {
     const { typePlan, picks } = plan
     const sub = typePlan.price
     const type = sub.substring(sub.length -2) 
@@ -47,4 +47,4 @@ const Finishing = ({ plan, isNext, setIsNext }: FinishPageProps) => {
     )
 }
 
-export { Finishing }
+export { PlanTotalPage }

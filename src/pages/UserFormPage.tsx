@@ -1,20 +1,21 @@
 import { useEffect, useRef, useState, ChangeEvent, MutableRefObject } from "react"
 import { Input } from "../components/Input"
-import { FormPersonalProps, Userdata, SetAttributeInput } from "../interfaces/types"
+import { User, SetAttributeElement } from "../interfaces/types"
+import { UserFormPageProps } from "../interfaces/props"
 
-const initialForm: Userdata = { name: "", email: "", number: "" }
+const initialForm: User = { name: "", email: "", number: "" }
 
-const FormInformation = ({ isNext, setIsNext, onUpdateUserData }: FormPersonalProps) => {
+const UserFormPage = ({ isNext, setIsNext, onUpdateUserForm }: UserFormPageProps) => {
     const nameRef = useRef <HTMLInputElement | null> (null)
     const emailRef = useRef <HTMLInputElement | null> (null)
     const numberRef = useRef <HTMLInputElement | null> (null)
-    const [formData, setFormData] = useState <Userdata> (initialForm)
+    const [formData, setFormData] = useState <User> (initialForm)
 
     useEffect(() => {
         if(isNext !== "Incomplete") {
             const { name, email, number } = formData
             if(isValidity(nameRef) && isValidity(emailRef) && number.length > 0) {
-                onUpdateUserData({ name, email, number })
+                onUpdateUserForm({ name, email, number })
                 setIsNext("Successful")
             }else {
                 if(isValidity(nameRef)) 
@@ -36,7 +37,7 @@ const FormInformation = ({ isNext, setIsNext, onUpdateUserData }: FormPersonalPr
         setFormData({ ...formData, [target.name]: target.value })
     }
     
-    const setAttributeNode = ({ node, attribute, value }: SetAttributeInput) => {
+    const setAttributeNode = ({ node, attribute, value }: SetAttributeElement) => {
         node?.setAttribute(attribute, value)
     }
 
@@ -66,4 +67,4 @@ const FormInformation = ({ isNext, setIsNext, onUpdateUserData }: FormPersonalPr
     )
 }
 
-export { FormInformation }
+export { UserFormPage }

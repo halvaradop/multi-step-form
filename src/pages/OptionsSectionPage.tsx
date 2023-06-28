@@ -1,14 +1,15 @@
 import { useState, useEffect, ChangeEvent } from "react"
 import { Input } from "../components/Input"
-import { Picks, PicksAddProps } from "../interfaces/types"
+import { Option } from "../interfaces/types"
+import { OptionsSelectionPageProps } from "../interfaces/props"
 
-const PicksAdd = ({ isNext, setIsNext, onUpdatePicks }: PicksAddProps) => {
-    const [inputsChecked, setInputsChecked] = useState <Array <Picks>> ([])
+const OptionsSectionPage = ({ isNext, setIsNext, onUpdateOptions }: OptionsSelectionPageProps) => {
+    const [inputsChecked, setInputsChecked] = useState <Array <Option>> ([])
 
     useEffect(() => {
         if(isNext !== "Incomplete") {
             if(inputsChecked.length > 0) {
-                onUpdatePicks(inputsChecked)
+                onUpdateOptions(inputsChecked)
                 setIsNext("Successful")
             }
         }
@@ -54,4 +55,4 @@ const PicksAdd = ({ isNext, setIsNext, onUpdatePicks }: PicksAddProps) => {
     )
 }
 
-export { PicksAdd }
+export { OptionsSectionPage }
