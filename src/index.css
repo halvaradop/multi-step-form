@@ -17,4 +17,8 @@
   .card-plans {
     @apply p-4 flex border border-gray-100 rounded-md;
   }
+
+  .blue-index {
+    @apply text-blue border-blue-300 bg-blue-300;
+  }
 }
