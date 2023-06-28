@@ -30,16 +30,18 @@ export interface InputProps extends ComponentVariant, ComponentProps, Click <Mou
     onChange?: (event: ChangeEvent <HTMLInputElement> ) => void
 }
 
-export interface PersonalForm {
+export interface Userdata {
     name: string,
     email: string,
     number: string
 }
 
 export interface Plan {
-    img: string,
+    img?: string,
     title: string,
-    price: Array <string> | string
+    price: string,
+    priceMonth?: string,
+    priceYear?: string
 }
 
 export interface CardSelectPlanProps extends Plan, ComponentProps, Click <MouseEvent <HTMLElement>> {}
@@ -54,9 +56,16 @@ export interface LayoutProps extends PagesProps {
     setIsNextSection: Dispatch <SetStateAction <boolean>>,
 }
 
-export interface FormPersonalProps extends PagesProps {}
-export interface SelectedPlanProps extends PagesProps {}
-export interface PicksAddProps extends PagesProps {}
+export interface FormPersonalProps extends PagesProps {
+    onUpdateUserData: (user: Userdata) => void
+}
+
+export interface SelectedPlanProps extends PagesProps {
+    onUpdateTypePlan: (plan: Plan) => void
+}
+export interface PicksAddProps extends PagesProps {
+    onUpdatePicks: (picks: Array <Picks>) => void
+}
 
 export interface SetAttributeInput {
     node: HTMLInputElement | null,
@@ -67,4 +76,19 @@ export interface SetAttributeInput {
 export interface IndexSectionProps {
     index: number,
     title: string
+}
+
+export interface Picks {
+    title: string,
+    price: string      
+}
+
+export interface MapPlan {
+    user: Userdata
+    typePlan: Plan,
+    picks: Array <Picks>
+}
+
+export interface FinishPageProps extends PagesProps {
+    plan: MapPlan
 }

@@ -1,9 +1,9 @@
 import { IndexSectionProps, Plan } from "../interfaces/types";
 
 export const selectPlans: Array <Plan> = [
-    { img: "/src/assets/arcade.svg", title: "Arcade", price: "$9" },
-    { img: "/src/assets/advanced.svg", title: "Advanded", price: "$12" },
-    { img: "/src/assets/pro.svg", title: "Pro", price: "$15" }
+    { img: "/src/assets/arcade.svg", title: "Arcade", price: "", priceMonth: "$9/mo", priceYear: "$9/yr" },
+    { img: "/src/assets/advanced.svg", title: "Advanded", price: "", priceMonth: "$12/mo", priceYear: "$120/yr" },
+    { img: "/src/assets/pro.svg", title: "Pro", price: "", priceMonth: "$15/mo", priceYear: "$15/yr" }
 ]
 
 export const indexes: Array <IndexSectionProps> = [

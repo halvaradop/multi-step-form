@@ -1,19 +1,20 @@
 import { useEffect, useRef, useState, ChangeEvent, MutableRefObject } from "react"
 import { Input } from "../components/Input"
-import { FormPersonalProps, PersonalForm, SetAttributeInput } from "../interfaces/types"
+import { FormPersonalProps, Userdata, SetAttributeInput } from "../interfaces/types"
 
-const initialForm: PersonalForm = { name: "", email: "", number: "" }
+const initialForm: Userdata = { name: "", email: "", number: "" }
 
-const FormPersonal = ({ isNext, setIsNext }: FormPersonalProps) => {
+const FormInformation = ({ isNext, setIsNext, onUpdateUserData }: FormPersonalProps) => {
     const nameRef = useRef <HTMLInputElement | null> (null)
     const emailRef = useRef <HTMLInputElement | null> (null)
     const numberRef = useRef <HTMLInputElement | null> (null)
-    const [formData, setFormData] = useState <PersonalForm> (initialForm)
+    const [formData, setFormData] = useState <Userdata> (initialForm)
 
     useEffect(() => {
         if(isNext !== "Incomplete") {
-            const { number } = formData
+            const { name, email, number } = formData
             if(isValidity(nameRef) && isValidity(emailRef) && number.length > 0) {
+                onUpdateUserData({ name, email, number })
                 setIsNext("Successful")
             }else {
                 if(isValidity(nameRef)) 
@@ -65,4 +66,4 @@ const FormPersonal = ({ isNext, setIsNext }: FormPersonalProps) => {
     )
 }
 
-export { FormPersonal }
+export { FormInformation }

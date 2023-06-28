@@ -3,14 +3,17 @@ import { CardSelectPlan } from "../components/CardSelectPlan";
 import { selectPlans } from "../utils/data";
 import { SelectedPlanProps } from "../interfaces/types";
 
-const SelectedPlan = ({ isNext, setIsNext }: SelectedPlanProps ) => {
+const SelectedPlan = ({ isNext, setIsNext, onUpdateTypePlan }: SelectedPlanProps ) => {
     const planRef = useRef <HTMLElement | null> (null)
     const [isMonthly, setIsMonthly] = useState(true)
 
     useEffect(() => {
         if(isNext !== "Incomplete") {
             if(planRef.current) {
+                const { price, title } = planRef.current.dataset
+                console.log(price, title)
                 setIsNext("Successful")
+                onUpdateTypePlan({ title: title ?? "", price: price ?? "" })
             }
         }
     }, [isNext])
@@ -44,8 +47,8 @@ const SelectedPlan = ({ isNext, setIsNext }: SelectedPlanProps ) => {
             <p className="mt-4 mb-5 text-gray text-lg font-medium">You have the option of monthly or yearly billing.</p>
             <section className="flex flex-col gap-y-5 base:grid base:grid-cols-3 base:gap-x-5">
                 {selectPlans.length > 0? (
-                    selectPlans.map(({ img, title, price }, key) => (
-                        <CardSelectPlan className="base:p-4 base:flex-col base:gap-y-7 base:leading-relaxed" key={key} img={img} title={title} price={isMonthly? `${price}/mo`: `${price}0/yr` } onClick={handleChangePlan}>
+                    selectPlans.map(({ img, title, priceMonth, priceYear }, key) => (
+                        <CardSelectPlan className="base:p-4 base:flex-col base:gap-y-7 base:leading-relaxed" key={key} img={img} title={title} price={isMonthly? priceMonth ?? "" : priceYear ?? "" } onClick={handleChangePlan}>
                             {!isMonthly && <span className="block text-blue text-sm font-medium base:mt-2 base:font-bold">2 months free</span>}
                         </CardSelectPlan>
                     ))
