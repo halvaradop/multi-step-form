@@ -42,11 +42,11 @@ const SelectedPlan = ({ isNext, setIsNext }: SelectedPlanProps ) => {
         <>
             <h1 className="text-blue text-3xl font-bold">Select your plan</h1>
             <p className="mt-4 mb-5 text-gray text-lg font-medium">You have the option of monthly or yearly billing.</p>
-            <section className="flex flex-col gap-y-5">
+            <section className="flex flex-col gap-y-5 base:grid base:grid-cols-3 base:gap-x-5">
                 {selectPlans.length > 0? (
                     selectPlans.map(({ img, title, price }, key) => (
-                        <CardSelectPlan key={key} img={img} title={title} price={isMonthly? `${price}/mo`: `${price}0/yr` } onClick={handleChangePlan}>
-                            {!isMonthly && <span className="text-blue text-sm font-medium">2 months free</span>}
+                        <CardSelectPlan className="base:p-4 base:flex-col base:gap-y-7 base:leading-relaxed" key={key} img={img} title={title} price={isMonthly? `${price}/mo`: `${price}0/yr` } onClick={handleChangePlan}>
+                            {!isMonthly && <span className="block text-blue text-sm font-medium base:mt-2 base:font-bold">2 months free</span>}
                         </CardSelectPlan>
                     ))
                 ) : ""}
