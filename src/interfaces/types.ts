@@ -63,3 +63,8 @@ export interface SetAttributeInput {
     attribute: string,
     value: string
 }
+
+export interface IndexSectionProps {
+    index: number,
+    title: string
+}

@@ -3,8 +3,6 @@ import { Input } from "../components/Input"
 import { FormPersonalProps, PersonalForm, SetAttributeInput } from "../interfaces/types"
 
 const initialForm: PersonalForm = { name: "", email: "", number: "" }
-const nameRegex = new RegExp("^([A-z0-9]+[ ]*[-_]*){1,8}$")
-const emailRegex = new RegExp("^[A-z0-9-_+'¡!?¿#$%:.\"\*]+[@](gmail|hotmail)[.](com|co)([.](com|co))?$")
 
 const FormPersonal = ({ isNext, setIsNext }: FormPersonalProps) => {
     const nameRef = useRef <HTMLInputElement | null> (null)
@@ -31,7 +29,7 @@ const FormPersonal = ({ isNext, setIsNext }: FormPersonalProps) => {
     
     const handleChange = (event: ChangeEvent <HTMLInputElement> ) => {
         const target = event.target as HTMLInputElement
-        if((target.name === "name" && nameRegex.test(target.value)) || (target.name === "number" && target.value.length > 0) || (target.name === "email" && emailRegex.test(target.value))) {
+        if((target.name === "name" && isValidity(nameRef)) || (target.name === "number" && target.value.length > 0) || (target.name === "email" && isValidity(emailRef))) {
             setAttributeNode({ node: target, attribute: "data-required", value: "false" })
         }
         setFormData({ ...formData, [target.name]: target.value })
